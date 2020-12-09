@@ -35,10 +35,22 @@ public class DataMahasiswa {
                 int gender = input.nextInt();
                 data.add(new Mahasiswa(nim,nama,tgl,gender));
             } else if (menu == 3){
-                System.out.print("NIM : ");
-                String nim = input.nextLine();
+                System.out.println("1. Berdasarkan NIM");
+                System.out.println("2. Berdasarkan Gender");
+                int filter = input.nextInt();
+                input.nextLine();
                 ArrayList<Mahasiswa> filterd_data = new ArrayList<>(data);
-                filterd_data.removeIf(t -> !t.nim.equals(nim));
+                if (filter == 1){
+                    System.out.print("NIM : ");
+                    String nim = input.nextLine();
+                    filterd_data.removeIf(t -> !t.nim.equals(nim));
+                } else if(filter == 2){
+                    System.out.print("Gender (Masukan 0 untuk Pria, 1 untuk Wanita) : ");
+                    int gender = input.nextInt();
+                    filterd_data.removeIf(t -> t.gender != gender);
+                }
+                
+                
                 if (filterd_data.isEmpty()){
                     System.out.println("Tidak Ditemukan");
                 } else {
